@@ -222,7 +222,7 @@ const normalQuestionBank = [
         question: "果郡王的母亲是谁？",
         options: ["德妃", "舒太妃", "惠妃", "温僖贵妃"],
         correct: 1
-    },
+    }
 ];
 
 // 地狱难度题库（50道题）- 更细节、更难的题目
@@ -528,6 +528,11 @@ const hellQuestionBank = [
         options: ["晚晚", "婉婉", "绾绾", "宛宛"],
         correct: 2
     },
+    {
+        question: "皇后将福子安排去服侍华妃的时候福子几岁？",
+        options: ["15岁", "16岁", "17岁", "18岁"],
+        correct: 2
+    }
 ]
 
  
