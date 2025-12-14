@@ -7,15 +7,26 @@ let correctCount = 0;
 let wrongCount = 0;
 let selectedDifficulty = null; // 选择的难度：'normal' 或 'hell'
 
-// DOM元素
-const startScreen = document.getElementById('start-screen');
-const quizScreen = document.getElementById('quiz-screen');
-const resultScreen = document.getElementById('result-screen');
-const startBtn = document.getElementById('start-btn');
-const nextBtn = document.getElementById('next-btn');
-const restartBtn = document.getElementById('restart-btn');
-const normalBtn = document.getElementById('normal-btn');
-const hellBtn = document.getElementById('hell-btn');
+// DOM元素（延迟获取，确保DOM已加载）
+let startScreen, quizScreen, resultScreen, startBtn, nextBtn, restartBtn, normalBtn, hellBtn;
+
+function initDOM() {
+    startScreen = document.getElementById('start-screen');
+    quizScreen = document.getElementById('quiz-screen');
+    resultScreen = document.getElementById('result-screen');
+    startBtn = document.getElementById('start-btn');
+    nextBtn = document.getElementById('next-btn');
+    restartBtn = document.getElementById('restart-btn');
+    normalBtn = document.getElementById('normal-btn');
+    hellBtn = document.getElementById('hell-btn');
+    
+    // 检查所有元素是否加载成功
+    if (!startScreen || !quizScreen || !resultScreen || !startBtn || !nextBtn || !restartBtn || !normalBtn || !hellBtn) {
+        console.error('DOM元素加载失败，请检查HTML结构');
+        return false;
+    }
+    return true;
+}
 
 // 等级配置（从答应到皇后）
 const levels = [
@@ -227,18 +238,32 @@ function showScreen(screen) {
     }
 }
 
-// 事件监听
-startBtn.addEventListener('click', startGame);
-nextBtn.addEventListener('click', nextQuestion);
-restartBtn.addEventListener('click', () => {
-    selectedDifficulty = null;
-    normalBtn.classList.remove('selected');
-    hellBtn.classList.remove('selected');
-    startBtn.disabled = true;
-    showScreen('start');
-});
+// 初始化事件监听
+function initEventListeners() {
+    if (!initDOM()) {
+        return;
+    }
+    
+    startBtn.addEventListener('click', startGame);
+    nextBtn.addEventListener('click', nextQuestion);
+    restartBtn.addEventListener('click', () => {
+        selectedDifficulty = null;
+        normalBtn.classList.remove('selected');
+        hellBtn.classList.remove('selected');
+        startBtn.disabled = true;
+        showScreen('start');
+    });
 
-// 难度选择事件
-normalBtn.addEventListener('click', () => selectDifficulty('normal'));
-hellBtn.addEventListener('click', () => selectDifficulty('hell'));
+    // 难度选择事件
+    normalBtn.addEventListener('click', () => selectDifficulty('normal'));
+    hellBtn.addEventListener('click', () => selectDifficulty('hell'));
+}
+
+// 页面加载完成后初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEventListeners);
+} else {
+    // DOM已经加载完成
+    initEventListeners();
+}
 

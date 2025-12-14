@@ -533,6 +533,5 @@ const hellQuestionBank = [
         options: ["15岁", "16岁", "17岁", "18岁"],
         correct: 2
     }
-]
+];
 
- 
