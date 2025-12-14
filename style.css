@@ -52,16 +52,6 @@ body::before {
     position: relative;
 }
 
-.container::before {
-    content: '🌸';
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 30px;
-    background: #FFF8DC;
-    padding: 0 10px;
-}
 
 /* 开始页面样式 */
 .title {

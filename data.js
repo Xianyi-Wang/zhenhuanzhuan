@@ -269,11 +269,6 @@ const hellQuestionBank = [
         correct: 0
     },
     {
-        question: "安嫔冰舞复宠是哪一天？",
-        options: ["正月十五", "除夕夜", "二月初二", "二月初九"],
-        correct: 0
-    },
-    {
         question: "甄嬛被赐浴汤泉宫是什么时候？",
         options: ["三月十三", "三月初三", "四月十六", "三月十七"],
         correct: 0
@@ -354,7 +349,7 @@ const hellQuestionBank = [
         correct: 1
     },
     {
-        question: "除夕夜甄嬛佯病与槿汐等人剪纸，瑾汐剪的什么图案？",
+        question: "除夕夜甄嬛佯病与槿汐等人剪纸，甄嬛剪的什么图案？",
         options: ["和合二仙", "孔雀开屏", "鸳鸯戏水", "西施浣衣"],
         correct: 0
     },
