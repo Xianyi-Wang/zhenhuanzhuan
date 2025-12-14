@@ -5,6 +5,7 @@ let score = 0;
 let selectedAnswer = null;
 let correctCount = 0;
 let wrongCount = 0;
+let selectedDifficulty = null; // 选择的难度：'normal' 或 'hell'
 
 // DOM元素
 const startScreen = document.getElementById('start-screen');
@@ -13,6 +14,8 @@ const resultScreen = document.getElementById('result-screen');
 const startBtn = document.getElementById('start-btn');
 const nextBtn = document.getElementById('next-btn');
 const restartBtn = document.getElementById('restart-btn');
+const normalBtn = document.getElementById('normal-btn');
+const hellBtn = document.getElementById('hell-btn');
 
 // 等级配置（从答应到皇后）
 const levels = [
@@ -41,8 +44,31 @@ function getLevel(score) {
     }
 }
 
+// 选择难度
+function selectDifficulty(difficulty) {
+    selectedDifficulty = difficulty;
+    
+    // 更新按钮样式
+    normalBtn.classList.remove('selected');
+    hellBtn.classList.remove('selected');
+    
+    if (difficulty === 'normal') {
+        normalBtn.classList.add('selected');
+    } else if (difficulty === 'hell') {
+        hellBtn.classList.add('selected');
+    }
+    
+    // 启用开始按钮
+    startBtn.disabled = false;
+}
+
 // 开始游戏
 function startGame() {
+    if (!selectedDifficulty) {
+        alert('请先选择难度！');
+        return;
+    }
+    
     // 重置状态
     currentQuestionIndex = 0;
     score = 0;
@@ -62,7 +88,17 @@ function startGame() {
 
 // 从题库中随机抽取指定数量的题目
 function getRandomQuestions(count) {
-    const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+    let sourceBank;
+    if (selectedDifficulty === 'normal') {
+        sourceBank = normalQuestionBank;
+    } else if (selectedDifficulty === 'hell') {
+        sourceBank = hellQuestionBank;
+    } else {
+        // 默认使用普通难度
+        sourceBank = normalQuestionBank;
+    }
+    
+    const shuffled = [...sourceBank].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
 }
 
@@ -195,6 +231,14 @@ function showScreen(screen) {
 startBtn.addEventListener('click', startGame);
 nextBtn.addEventListener('click', nextQuestion);
 restartBtn.addEventListener('click', () => {
+    selectedDifficulty = null;
+    normalBtn.classList.remove('selected');
+    hellBtn.classList.remove('selected');
+    startBtn.disabled = true;
     showScreen('start');
 });
+
+// 难度选择事件
+normalBtn.addEventListener('click', () => selectDifficulty('normal'));
+hellBtn.addEventListener('click', () => selectDifficulty('hell'));
 

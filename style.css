@@ -98,10 +98,83 @@ body::before {
     text-align: center;
     font-size: 1em;
     color: #8B4513;
-    margin: 15px 0 30px;
+    margin: 15px 0 20px;
     padding: 15px;
     background: rgba(139, 69, 19, 0.1);
     border-radius: 10px;
+}
+
+/* 难度选择样式 */
+.difficulty-selection {
+    margin: 25px 0;
+}
+
+.difficulty-title {
+    text-align: center;
+    font-size: 1.3em;
+    color: #654321;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.difficulty-options {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.difficulty-btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #D2691E;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.difficulty-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: #8B4513;
+}
+
+.difficulty-btn.selected {
+    background: linear-gradient(135deg, #FFE4B5 0%, #FFDAB9 100%);
+    border-color: #8B4513;
+    border-width: 3px;
+    box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
+}
+
+.difficulty-btn.normal-btn.selected {
+    background: linear-gradient(135deg, #E6F3FF 0%, #CCE7FF 100%);
+    border-color: #4A90E2;
+}
+
+.difficulty-btn.hell-btn.selected {
+    background: linear-gradient(135deg, #FFE6E6 0%, #FFCCCC 100%);
+    border-color: #DC143C;
+}
+
+.difficulty-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.difficulty-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #654321;
+    margin-bottom: 8px;
+}
+
+.difficulty-desc {
+    font-size: 0.9em;
+    color: #8B4513;
+    line-height: 1.4;
 }
 
 /* 按钮样式 */
@@ -349,6 +422,16 @@ body::before {
     .result-stats {
         flex-direction: column;
         gap: 15px;
+    }
+    
+    .difficulty-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .difficulty-btn {
+        max-width: 100%;
+        width: 100%;
     }
 }
 
